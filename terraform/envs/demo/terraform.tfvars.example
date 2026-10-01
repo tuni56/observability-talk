@@ -1,0 +1,9 @@
+# Demo environment — override defaults here
+# Copy this file to terraform.tfvars and fill in your values
+
+aws_region            = "us-east-2"
+environment           = "demo"
+project_name          = "obs-talk"
+sns_alert_email       = "your-email@example.com"  # <-- change this
+enable_observability  = true
+introduce_latency_bug = false  # set to true for the "broken" demo phase

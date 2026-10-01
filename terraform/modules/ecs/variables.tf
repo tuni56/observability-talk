@@ -1,0 +1,13 @@
+variable "prefix"                { type = string }
+variable "aws_region"            { type = string }
+variable "vpc_id"                { type = string }
+variable "private_subnet_ids"    { type = list(string) }
+variable "sqs_queue_url"         { type = string }
+variable "sqs_queue_arn"         { type = string }
+variable "dynamodb_table_name"   { type = string }
+variable "dynamodb_table_arn"    { type = string }
+variable "s3_bucket_name"        { type = string }
+variable "s3_bucket_arn"         { type = string }
+variable "enable_observability"  { type = bool }
+variable "introduce_latency_bug" { type = bool }
+variable "log_group_name"        { type = string }

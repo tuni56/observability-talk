@@ -1,0 +1,30 @@
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfstate.lock.info
+.terraform.lock.hcl
+terraform.tfvars
+!terraform.tfvars.example
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# Build artifacts
+app/ingestion.zip
+app/processor.zip
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Secrets — never commit these
+.env
+*.pem
+credentials.json
