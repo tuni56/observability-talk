@@ -86,7 +86,7 @@ resource "aws_cloudwatch_metric_alarm" "lambda_latency_p2" {
   evaluation_periods  = 2
   threshold           = 3000
   period              = 300
-  statistic           = "p99"
+  extended_statistic  = "p99"
   metric_name         = "Duration"
   namespace           = "AWS/Lambda"
 
@@ -131,16 +131,23 @@ resource "aws_cloudwatch_dashboard" "main" {
     widgets = [
       {
         type   = "text"
-        x      = 0; y = 0; width = 24; height = 2
+        x      = 0
+        y      = 0
+        width  = 24
+        height = 2
         properties = {
           markdown = "# ${var.prefix} — Observability Dashboard\n**The Cost of Validation: Adding Governance Without Creating Bottlenecks** | Community Day South Florida"
         }
       },
       {
         type   = "metric"
-        x      = 0; y = 2; width = 8; height = 6
+        x      = 0
+        y      = 2
+        width  = 8
+        height = 6
         properties = {
           title  = "Lambda Invocations & Errors"
+          region = var.aws_region
           period = 60
           stat   = "Sum"
           view   = "timeSeries"
@@ -152,9 +159,13 @@ resource "aws_cloudwatch_dashboard" "main" {
       },
       {
         type   = "metric"
-        x      = 8; y = 2; width = 8; height = 6
+        x      = 8
+        y      = 2
+        width  = 8
+        height = 6
         properties = {
           title  = "Lambda Duration (P50 / P99)"
+          region = var.aws_region
           period = 60
           view   = "timeSeries"
           metrics = [
@@ -165,9 +176,13 @@ resource "aws_cloudwatch_dashboard" "main" {
       },
       {
         type   = "metric"
-        x      = 16; y = 2; width = 8; height = 6
+        x      = 16
+        y      = 2
+        width  = 8
+        height = 6
         properties = {
           title  = "SQS Queue Depth & DLQ"
+          region = var.aws_region
           period = 60
           stat   = "Maximum"
           view   = "timeSeries"
@@ -180,9 +195,13 @@ resource "aws_cloudwatch_dashboard" "main" {
       },
       {
         type   = "metric"
-        x      = 0; y = 8; width = 12; height = 6
+        x      = 0
+        y      = 8
+        width  = 12
+        height = 6
         properties = {
           title  = "ECS CPU & Memory Utilization"
+          region = var.aws_region
           period = 60
           stat   = "Average"
           view   = "timeSeries"
@@ -194,7 +213,10 @@ resource "aws_cloudwatch_dashboard" "main" {
       },
       {
         type   = "log"
-        x      = 12; y = 8; width = 12; height = 6
+        x      = 12
+        y      = 8
+        width  = 12
+        height = 6
         properties = {
           title   = "Recent Errors (Structured Logs)"
           region  = var.aws_region

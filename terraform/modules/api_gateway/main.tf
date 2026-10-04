@@ -42,7 +42,6 @@ resource "aws_apigatewayv2_stage" "main" {
       status         = "$context.status"
       responseLength = "$context.responseLength"
       duration       = "$context.responseLatency"
-      traceId        = "$context.xrayTraceId"
     })
   }
 }

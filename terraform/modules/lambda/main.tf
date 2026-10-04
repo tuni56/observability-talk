@@ -37,11 +37,25 @@ resource "aws_iam_role_policy" "lambda_sqs" {
   })
 }
 
-# Package Lambda code
+# Package Lambda code — include ingestion + shared
 data "archive_file" "ingestion" {
   type        = "zip"
-  source_dir  = "${path.module}/../../../app/ingestion"
   output_path = "${path.module}/../../../app/ingestion.zip"
+
+  source {
+    content  = file("${path.module}/../../../app/ingestion/handler.py")
+    filename = "handler.py"
+  }
+
+  source {
+    content  = file("${path.module}/../../../app/ingestion/requirements.txt")
+    filename = "requirements.txt"
+  }
+
+  source {
+    content  = file("${path.module}/../../../app/shared/logger.py")
+    filename = "shared/logger.py"
+  }
 }
 
 resource "aws_lambda_function" "ingestion" {

@@ -74,7 +74,7 @@ resource "aws_iam_role_policy" "ecs_task_permissions" {
 
 resource "aws_security_group" "ecs_processor" {
   name        = "${var.prefix}-processor-sg"
-  description = "ECS processor — egress only"
+  description = "ECS processor - egress only"
   vpc_id      = var.vpc_id
 
   egress {
